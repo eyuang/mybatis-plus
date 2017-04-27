@@ -16,9 +16,9 @@
                 typeHandler="com.baomidou.mybatisplus.test.mysql.typehandler.PhoneTypeHandler"/>
     </resultMap>
 
-    <!--<select id="selectPage" resultType="UserPlus">-->
-        <!--select test_id AS id,user_name,age,test_type AS testType from user_plus-->
-    <!--</select>-->
+    <select id="selectAll" resultType="UserPlus">
+        select user_name as userName, test_type as testType, age from user_plus
+    </select>
 
 
 </mapper>

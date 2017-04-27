@@ -80,7 +80,7 @@ public class UserMapperPlusTest extends TestCase {
         SqlSession session = factory.openSession();
         UserMapperPlus userMapper = session.getMapper(UserMapperPlus.class);
 
-        EntityWrapper<UserPlus> ew = new EntityWrapper<>(new UserPlus());
+        EntityWrapper<UserPlus> ew = new EntityWrapper<>();
 
         ew.setSqlSelect("age, user_name");
 
@@ -88,50 +88,49 @@ public class UserMapperPlusTest extends TestCase {
 
         Page<UserPlus> page = new Page<>(1, 2);
 
-        List<UserPlus> paginList = userMapper.selectPage(page, ew);
-        page.setRecords(paginList);
+        List<UserPlus> pageList = userMapper.selectPage(page, ew);
+        page.setRecords(pageList);
         for (int i = 0; i < page.getRecords().size(); i++) {
             print(page.getRecords().get(i));
         }
         System.err.println(" 翻页：" + page.toString());
 
 
-        ew = new EntityWrapper<>(new UserPlus());
+        ew = new EntityWrapper<>();
         ew.setSqlSelect("age, user_name");
         ew.where("1 = 1").and().like("user_name", "junyu")
                 .and("age={0}", 1).orderBy("age, user_name", true);
 
         page = new Page<>(1, 3);
 
-        paginList = userMapper.selectPage(page, ew);
-        page.setRecords(paginList);
+        pageList = userMapper.selectPage(page, ew);
+        page.setRecords(pageList);
         for (int i = 0; i < page.getRecords().size(); i++) {
             print(page.getRecords().get(i));
         }
         System.err.println(" 翻页：" + page.toString());
     }
 
+    public void testSelectAll() {
+        SqlSession session = factory.openSession();
+        UserMapperPlus userMapper = session.getMapper(UserMapperPlus.class);
+
+        List<UserPlus> result = userMapper.selectAll();
+        for (UserPlus user : result) {
+            print(user);
+        }
+        System.err.println(" 共有 " + result.size() + " 条数据。");
+    }
+
     /*
      * 打印测试信息
      */
     private static void print(UserPlus user) {
-        sleep();
         if (user != null) {
             System.out.println("\n user: id=" + user.getId() + ", user_name=" + user.getUserName() + ", age=" + user.getAge()
                     + ", testType=" + user.getTestType());
         } else {
             System.out.println("\n user is null.");
-        }
-    }
-
-    /*
-     * 慢点打印
-     */
-    private static void sleep() {
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
         }
     }
 
