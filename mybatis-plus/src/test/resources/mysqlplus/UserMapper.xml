@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.baomidou.mybatisplus.test.mysql.mapper.UserMapperPlus">
+
+    <cache type="org.mybatis.caches.ehcache.LoggingEhcache"/>
+
+    <resultMap type="UserPlus" id="userMap">
+        <id column="id" property="id"/>
+        <result column="test_id" property="id"/>
+        <result column="user_name" property="userName"/>
+        <result column="age" property="age"/>
+        <result column="test_type" property="testType"/>
+
+        <!-- 自定义 typeHandler 语法 -->
+        <result column="phone" property="phone"
+                typeHandler="com.baomidou.mybatisplus.test.mysql.typehandler.PhoneTypeHandler"/>
+    </resultMap>
+
+    <!--<select id="selectPage" resultType="UserPlus">-->
+        <!--select test_id AS id,user_name,age,test_type AS testType from user_plus-->
+    <!--</select>-->
+
+
+</mapper>
