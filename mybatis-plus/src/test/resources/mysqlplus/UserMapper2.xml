@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.baomidou.mybatisplus.test.mysql.mapper.UserMapper2">
+
+    <cache type="org.mybatis.caches.ehcache.LoggingEhcache"/>
+
+    <resultMap type="userInfo" id="userMap">
+        <id column="id" property="id"/>
+    </resultMap>
+
+    <select id="selectAll" resultType="userInfo">
+        select * from user
+    </select>
+</mapper>
