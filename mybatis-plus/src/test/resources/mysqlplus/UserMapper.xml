@@ -17,8 +17,8 @@
     </resultMap>
 
     <select id="selectAll" resultType="UserPlus">
-        select user_name as userName, test_type as testType, age from user_plus
+        select * from user_plus
+        <!--select user_name as userName, test_type as testType, age from user_plus-->
     </select>
-
 
 </mapper>
