@@ -8,6 +8,7 @@ import com.baomidou.mybatisplus.test.mysql.entityplus.UserPlus;
 import com.baomidou.mybatisplus.test.mysql.mapper.UserMapperPlus;
 import com.baomidou.mybatisplus.toolkit.IdWorker;
 import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import junit.framework.TestCase;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -117,14 +118,18 @@ public class UserMapperPlusTest extends TestCase {
         SqlSession session = factory.openSession();
         UserMapperPlus userMapper = session.getMapper(UserMapperPlus.class);
 
+        com.github.pagehelper.Page page = PageHelper.startPage(1, 5);
+
         EntityWrapper<UserPlus> ew = new EntityWrapper<>();
         ew.setSqlSelect("*");
         ew.isNotNull("user_name").isNull("phone").le("age", 9);
 //        ew.where("1 = 1").and().isNotNull("user_name").like("phone", "abc").eq("age", 33);
 
-        List<UserPlus> result = userMapper.selectList(ew);
+        userMapper.selectList(ew);
 
-        System.err.println(" 共有 " + result.size() + " 条数据。");
+        PageInfo pageInfo = new PageInfo(page);
+
+        System.err.println(" 共有 " + pageInfo.getSize() + " 条数据。");
 
     }
 
