@@ -5,11 +5,10 @@
     <cache type="org.mybatis.caches.ehcache.LoggingEhcache"/>
 
     <resultMap type="UserPlus" id="userMap">
-        <id column="id" property="id"/>
-        <result column="test_id" property="id"/>
+        <id column="test_id" property="id"/>
     </resultMap>
 
-    <select id="selectAll" resultType="UserPlus">
+    <select id="selectAll" resultType="UserPlus" resultMap="userMap">
         select * from user_plus
         <!--select user_name as userName, test_type as testType, age from user_plus-->
     </select>
