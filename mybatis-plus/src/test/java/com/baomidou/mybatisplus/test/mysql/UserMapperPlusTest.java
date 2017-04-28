@@ -118,7 +118,7 @@ public class UserMapperPlusTest extends TestCase {
         SqlSession session = factory.openSession();
         UserMapperPlus userMapper = session.getMapper(UserMapperPlus.class);
 
-        com.github.pagehelper.Page page = PageHelper.startPage(1, 5);
+        com.github.pagehelper.Page page = PageHelper.startPage(1, 30);
 
         EntityWrapper<UserPlus> ew = new EntityWrapper<>();
         ew.setSqlSelect("*");
@@ -137,7 +137,6 @@ public class UserMapperPlusTest extends TestCase {
         SqlSession session = factory.openSession();
         UserMapperPlus userMapper = session.getMapper(UserMapperPlus.class);
 
-        PageHelper.startPage(1, 10);
         List<UserPlus> result = userMapper.selectAll();
         for (UserPlus user : result) {
             print(user);

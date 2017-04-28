@@ -7,13 +7,6 @@
     <resultMap type="UserPlus" id="userMap">
         <id column="id" property="id"/>
         <result column="test_id" property="id"/>
-        <result column="user_name" property="userName"/>
-        <result column="age" property="age"/>
-        <result column="test_type" property="testType"/>
-
-        <!-- 自定义 typeHandler 语法 -->
-        <result column="phone" property="phone"
-                typeHandler="com.baomidou.mybatisplus.test.mysql.typehandler.PhoneTypeHandler"/>
     </resultMap>
 
     <select id="selectAll" resultType="UserPlus">
